@@ -1,0 +1,69 @@
+\section{Gradient on Manifolds}
+\begin{frame}{Motivation}
+  If $f:\RR^d\to \RR$, then $\nabla f: \RR^d\to\RR^d$. We want to generalize in such a way that if $f:\M\to \RR$, then $\grad f: \M \to \M$.
+
+  Recall that to define the gradient in $\RR^d$, we need the \textcolor{gustave}{differential} and an \textcolor{gustave}{inner product}, which in turn needs a \textcolor{gustave}{linear structure.}
+
+  We already have $T_x\M$.
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{Differential on Manifolds}
+  For $f: \RR^d \to \RR^q$, the differential $\mathrm{D}f(x): \RR^d \to \RR^q$ defined by
+
+  \[
+    \mathrm{D}f(x)(v) = \lim\limits_{t\to 0}\dfrac{f(x+tv) - f(x)}{t} = \left.\frac{\mathrm{d}}{\mathrm{d}t} f(x + tv)\right|_{t=0} = (f\circ\gamma)'(0)
+  \]
+
+  This means how $f$ changes when we move from $x$ in the \textcolor{gray}{straight} direction $v$.
+
+  The problem with manifolds is that the line $x + tv$ (for $t$ in some interval) may not lie in $\M$.
+
+  But we can use a curve in $\M$.
+
+  \framebreak
+
+  \begin{mydefinition}[Differential]
+  Let $f:\M\to \M'$. The differential of $f$ at $x\in \M$ is the linear map $\mathrm{D}f(x): T_x\M \to T_{f(x)}\M'$ defined by
+  \[
+    \mathrm{D}f(x)[v] = \left.\frac{\mathrm{d}}{\mathrm{d}t} f(\gamma(t))\right|_{t=0} = (f\circ\gamma)'(0).\]
+  Here, $\gamma:(-\epsilon,\epsilon) \to \M$ is any smooth curve passing through $x$ with velocity $v$ i.e. $\gamma(0) = x$ and $\gamma'(0) = v$.
+  \end{mydefinition}
+
+  Here we need to check that $Df(x)[v]$ does not depend on the choice of $\gamma$. Details are given in the appendix.
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Gradient on Manifolds}
+  We need conditions under which $\grad f(x)$ is well-defined by the usual
+  $$\langle \grad f(x), v \rangle_x = \mathrm{D}f(x)[v], \quad \forall v\in T_x\M.$$
+
+  \begin{mydefinition}[Riemannian metric]
+  A Riemannian metric is an inner product $\langle \cdot, \cdot\rangle_x: T_x\M \times T_x\M \to \RR$ that varies smoothly with $x$ i.e. for any smooth vector fields $X,Y$ on $\M$, the function $x\mapsto \langle X(x), Y(x)\rangle_x$ is smooth.
+  \end{mydefinition}
+
+  \framebreak
+
+  Considering every $x\in \M$, we need the notion of tangent bundle
+  $$T\M = \{(x,v) \,|\, x\in\M \text{ and } v\in T_x\M\}.$$
+
+  \begin{mydefinition}[Gradient]
+  Let $f:\M\to \RR$ be smooth on a Riemannian manifold $\M$. The gradient $\grad f$ is a vector field such that
+  $$\forall (x,v)\in T\M, \langle \grad f(x), v \rangle_x = \mathrm{D}f(x)[v].$$
+  \end{mydefinition}
+\end{frame}
+
+\begin{frame}{Computation of Gradient - Retraction}
+
+
+  \begin{mydefinition}[Retraction]
+  A retraction is a smooth map $R: T\M \to \M: (x,v)\mapsto R_x(v)$ such that each curve $c(t)=R_x(tv)$ satisfies $c(0) = x$ and $c'(0) = v$.
+  \end{mydefinition}
+
+  \begin{myproposition}
+    Let $f: \M\to\RR$ be a smooth function on a Riemannian manifold $\M$ equipped with a retraction $R$. Then for all $x\in \M$,
+    $$\grad f(x) = \nabla(f\circ R_x)(0)$$
+  \end{myproposition}
+
+  % \textcolor{red}{Should we add exponential map here? We will have to introduce geodesics first.}
+\end{frame}
+
